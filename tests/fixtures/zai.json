@@ -1,0 +1,66 @@
+{
+ "schemaVersion": 1,
+ "id": "zai",
+ "name": "Z.ai",
+ "updatedAt": "2026-11-09T11:58:00+00:00",
+ "ready": true,
+ "tierLabel": "pro",
+ "usageStatusText": "",
+ "authHelpText": "Z.ai didn't answer; showing the last limits it gave.",
+ "limits": [
+  {
+   "label": "5-hour",
+   "percent": 0.2,
+   "resetsAt": "2026-11-09T11:00:00+00:00"
+  },
+  {
+   "label": "Monthly",
+   "percent": 0.66,
+   "resetsAt": "2026-11-26T04:00:00+00:00"
+  }
+ ],
+ "limitsStale": true,
+ "limitsFetchedAt": 1794214800000,
+ "retryAdvised": false,
+ "hasLocalStats": true,
+ "hasPromptStats": true,
+ "todayPrompts": 0,
+ "todaySessions": 0,
+ "todayTotalTokens": 0,
+ "todayTokensByModel": {},
+ "recentDays": [
+  {
+   "date": "2026-11-03",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-04",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-05",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-06",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-07",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-08",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-09",
+   "messageCount": 0
+  }
+ ],
+ "totalPrompts": 0,
+ "totalSessions": 0,
+ "activeDays": 0,
+ "activeDates": [],
+ "modelUsage": {}
+}

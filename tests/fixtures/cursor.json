@@ -1,0 +1,55 @@
+{
+ "schemaVersion": 1,
+ "id": "cursor",
+ "name": "Cursor",
+ "updatedAt": "2026-11-09T11:58:00+00:00",
+ "ready": false,
+ "tierLabel": "",
+ "usageStatusText": "Waiting for auth",
+ "authHelpText": "Run `cursor-agent login` to sign in.",
+ "limits": [],
+ "limitsStale": false,
+ "limitsFetchedAt": 1794225480000,
+ "retryAdvised": false,
+ "hasLocalStats": true,
+ "hasPromptStats": true,
+ "todayPrompts": 0,
+ "todaySessions": 0,
+ "todayTotalTokens": 0,
+ "todayTokensByModel": {},
+ "recentDays": [
+  {
+   "date": "2026-11-03",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-04",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-05",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-06",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-07",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-08",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-09",
+   "messageCount": 0
+  }
+ ],
+ "totalPrompts": 0,
+ "totalSessions": 0,
+ "activeDays": 0,
+ "activeDates": [],
+ "modelUsage": {}
+}

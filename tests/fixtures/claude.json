@@ -1,0 +1,85 @@
+{
+ "schemaVersion": 1,
+ "id": "claude",
+ "name": "Claude Code",
+ "updatedAt": "2026-11-09T11:58:00+00:00",
+ "ready": true,
+ "tierLabel": "max 20x",
+ "usageStatusText": "",
+ "authHelpText": "",
+ "limits": [
+  {
+   "label": "Session (5-hour)",
+   "percent": 0.51,
+   "resetsAt": "2026-11-09T14:12:00+00:00"
+  },
+  {
+   "label": "Weekly (7-day)",
+   "percent": 0.91,
+   "resetsAt": "2026-11-12T16:00:00+00:00"
+  },
+  {
+   "label": "Opus Weekly",
+   "title": "Opus Weekly",
+   "percent": 0.33,
+   "resetsAt": "2026-11-12T16:00:00+00:00"
+  }
+ ],
+ "limitsStale": false,
+ "limitsFetchedAt": 1794225480000,
+ "retryAdvised": false,
+ "hasLocalStats": true,
+ "hasPromptStats": true,
+ "todayPrompts": 34,
+ "todaySessions": 3,
+ "todayTotalTokens": 1234567,
+ "todayTokensByModel": {},
+ "recentDays": [
+  {
+   "date": "2026-11-03",
+   "messageCount": 2000000.0
+  },
+  {
+   "date": "2026-11-04",
+   "messageCount": 3500000.0
+  },
+  {
+   "date": "2026-11-05",
+   "messageCount": 1000000.0
+  },
+  {
+   "date": "2026-11-06",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-07",
+   "messageCount": 4200000.0
+  },
+  {
+   "date": "2026-11-08",
+   "messageCount": 5000000.0
+  },
+  {
+   "date": "2026-11-09",
+   "messageCount": 1234567
+  }
+ ],
+ "totalPrompts": 412,
+ "totalSessions": 51,
+ "activeDays": 23,
+ "activeDates": [],
+ "modelUsage": {
+  "claude-opus-5-5": {
+   "inputTokens": 1000000,
+   "outputTokens": 400000,
+   "cacheReadInputTokens": 3700000,
+   "cacheCreationInputTokens": 0
+  },
+  "claude-sonnet-5-5-20260101": {
+   "inputTokens": 300000,
+   "outputTokens": 100000,
+   "cacheReadInputTokens": 800000,
+   "cacheCreationInputTokens": 0
+  }
+ }
+}

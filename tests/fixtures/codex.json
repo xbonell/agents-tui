@@ -1,0 +1,73 @@
+{
+ "schemaVersion": 1,
+ "id": "codex",
+ "name": "Codex",
+ "updatedAt": "2026-11-09T11:58:00+00:00",
+ "ready": true,
+ "tierLabel": "plus",
+ "usageStatusText": "",
+ "authHelpText": "",
+ "limits": [
+  {
+   "label": "5h limit",
+   "percent": 0.12,
+   "resetsAt": "2026-11-09T16:01:48+00:00"
+  },
+  {
+   "label": "Weekly limit",
+   "percent": 0.4,
+   "resetsAt": "2026-11-13T16:00:00+00:00"
+  }
+ ],
+ "limitsStale": false,
+ "limitsFetchedAt": 1794225480000,
+ "retryAdvised": false,
+ "hasLocalStats": true,
+ "hasPromptStats": true,
+ "todayPrompts": 5,
+ "todaySessions": 1,
+ "todayTotalTokens": 230000,
+ "todayTokensByModel": {},
+ "recentDays": [
+  {
+   "date": "2026-11-03",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-04",
+   "messageCount": 100000.0
+  },
+  {
+   "date": "2026-11-05",
+   "messageCount": 200000.0
+  },
+  {
+   "date": "2026-11-06",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-07",
+   "messageCount": 0
+  },
+  {
+   "date": "2026-11-08",
+   "messageCount": 300000.0
+  },
+  {
+   "date": "2026-11-09",
+   "messageCount": 230000
+  }
+ ],
+ "totalPrompts": 40,
+ "totalSessions": 0,
+ "activeDays": 0,
+ "activeDates": [],
+ "modelUsage": {
+  "gpt-5.6-sol": {
+   "inputTokens": 800000,
+   "outputTokens": 100000,
+   "cacheReadInputTokens": 0,
+   "cacheCreationInputTokens": 0
+  }
+ }
+}

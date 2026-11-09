@@ -18,7 +18,7 @@ Segment = Tuple[str, str]
 Line = List[Segment]
 
 # Styles: "" plain, "bold", "dim", "accent", "alarm", "warn", "ok",
-# "title" (a card's name), "selected" (the selected card's name and marker),
+# "title" (a card's name), "selected" (the selected card's name and border),
 # "bar", "bar_alarm", "bar_empty".
 
 
@@ -34,12 +34,13 @@ class Glyphs:
   rule: str
   sub: str
   spinner: str
+  box: str  # corners top-left, top-right, bottom-left, bottom-right, then horizontal, vertical
 
   @classmethod
   def make(cls, ascii_only: bool) -> "Glyphs":
     if ascii_only:
-      return cls("#", "", "-", " .:-=+*#", ">", "-", "...", "-", "+", "|/-\\")
-    return cls("█", "▏▎▍▌▋▊▉", "░", "▁▂▃▄▅▆▇█", "▌", "·", "…", "─", "↳", "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏")
+      return cls("#", "", "-", " .:-=+*#", ">", "-", "...", "-", "+", "|/-\\", "++++-|")
+    return cls("█", "▏▎▍▌▋▊▉", "░", "▁▂▃▄▅▆▇█", "▌", "·", "…", "─", "↳", "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏", "╭╮╰╯─│")
 
 
 @dataclass
@@ -160,7 +161,7 @@ def wrap(text: str, width: int, style: str, indent: int) -> List[Line]:
 # A card
 
 LABEL_MIN, LABEL_MAX = 7, 12
-INDENT = 2
+INDENT = 0  # the box's padding indents a card's lines
 RESET_W = 17
 
 
@@ -193,19 +194,9 @@ def _has_stats(record: UsageRecord) -> bool:
 
 
 def card(record: UsageRecord, width: int, view: View) -> List[Line]:
+  """A card's lines inside its box; `frame` draws the box and the name."""
   g, now = view.glyphs, view.now
-  selected = record.id == view.selected
   lines: List[Line] = []
-
-  # Head: marker, name, plan on the right.
-  marker = (g.marker if selected else " ", "selected" if selected else "")
-  name_style = "selected" if selected else "title"
-  if present.record_alarming(record, now):
-    name_style = "alarm"
-  plan = present.plan_label(record)
-  if record.scope == "account" and plan:
-    plan += " (account)"
-  lines.append(spread([marker, (record.name, name_style)], [(plan, "dim")] if plan else [], width))
 
   if present.needs_sign_in(record):
     line: Line = [(" " * INDENT, ""), ("! Sign-in required", "warn")]
@@ -290,6 +281,36 @@ def card(record: UsageRecord, width: int, view: View) -> List[Line]:
   return lines
 
 
+def frame(record: UsageRecord, inner: List[Line], width: int, height: int, view: View) -> List[Line]:
+  """`inner` boxed to `width` and `height` rows, the name and plan in the top edge."""
+  g = view.glyphs
+  tl, tr, bl, br, h, v = g.box
+  selected = record.id == view.selected
+  edge = "selected" if selected else "dim"
+  name_style = "selected" if selected else "title"
+  if present.record_alarming(record, view.now):
+    name_style = "alarm"
+  plan = present.plan_label(record)
+  if record.scope == "account" and plan:
+    plan += " (account)"
+
+  room = width - 4  # tl, h, and h, tr around the title
+  name = clip_text(record.name, room - 2, g.ellipsis)
+  left: Line = [(tl + h, edge), (" " + name + " ", name_style)] if name else [(tl + h, edge)]
+  right: Line = [(" " + plan + " ", "dim"), (h + tr, edge)] if plan else [(h + tr, edge)]
+  if line_width(left) + line_width(right) + 1 > width:
+    right = [(h + tr, edge)]
+  fill = width - line_width(left) - line_width(right)
+  top = clip(left + [(h * max(0, fill), edge)] + right, width)
+
+  out: List[Line] = [top]
+  for i in range(height):
+    part = inner[i] if i < len(inner) else []
+    out.append([(v + " ", edge)] + pad(part, width - 4) + [(" " + v, edge)])
+  out.append([(bl + h * (width - 2) + br, edge)])
+  return out
+
+
 def details(record: UsageRecord, width: int, view: View) -> List[Line]:
   g = view.glyphs
   out: List[Line] = []
@@ -348,8 +369,8 @@ class Body:
   spans: Dict[str, Tuple[int, int]]  # card id -> first line, line after the last
 
 
-GAP = 3
-CARD_MIN = 54
+GAP = 1
+CARD_MIN = 56
 
 
 def columns_for(width: int, count: int) -> int:
@@ -366,22 +387,20 @@ def body(view: View, width: int) -> Body:
   spans: Dict[str, Tuple[int, int]] = {}
   for start in range(0, len(records), cols):
     row = records[start:start + cols]
-    blocks = [card(r, col_w, view) for r in row]
-    height = max(len(b) for b in blocks)
+    inner = [card(r, col_w - 4, view) for r in row]
+    height = max(len(b) for b in inner)
+    # Every box in a row gets the row's height, so their edges line up.
+    blocks = [frame(r, b, col_w, height, view) for r, b in zip(row, inner)]
     top = len(lines)
-    for i in range(height):
+    for i in range(height + 2):
       line: Line = []
       for c, block in enumerate(blocks):
-        part = block[i] if i < len(block) else []
-        line += pad(part, col_w) if c < len(blocks) - 1 else part
-        if c < len(blocks) - 1:
+        if c:
           line.append((" " * GAP, ""))
+        line += block[i]
       lines.append(line)
-    for r, block in zip(row, blocks):
-      spans[r.id] = (top, top + height)
-    lines.append([])
-  if lines and not lines[-1]:
-    lines.pop()
+    for r in row:
+      spans[r.id] = (top, top + height + 2)
   return Body(lines, spans)
 
 

@@ -50,6 +50,18 @@ class RenderTests(unittest.TestCase):
     self.assertEqual(body.spans["claude"], body.spans["codex"])
     self.assertLess(body.spans["claude"][1], body.spans["cursor"][0] + 1)
 
+  def test_cards_are_boxed(self):
+    _, body = self.screen(120)
+    lines = text(body.lines)
+    start, end = body.spans["claude"]
+    self.assertTrue(lines[start].startswith("╭─ Claude Code "))
+    self.assertIn(" Max 20x ─╮", lines[start])
+    # Side-by-side boxes share their height, so the row closes on one line.
+    self.assertEqual(lines[end - 1].count("╰"), 2)
+    self.assertTrue(all(len(line) == len(lines[start]) for line in lines[start:end]))
+    self.assertEqual(body.lines[start][0], ("╭─", "selected"))
+    self.assertEqual(body.lines[start][-1], ("─╮", "dim"))
+
   def test_meter(self):
     g = render.Glyphs.make(False)
     self.assertEqual(text([render.meter(0.5, 10, False, g)]), ["█████░░░░░"])

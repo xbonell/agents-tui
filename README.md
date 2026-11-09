@@ -47,7 +47,7 @@ The installer only makes a symlink, so `git pull` updates it and `./install.sh -
 | `PgUp PgDn`, `g G` | Scroll |
 | `q` | Quit |
 
-Cards sit side by side when the terminal is wide enough, and the layout narrows down to about 30 columns. A meter turns red at 90%, and so does the `!` in the header. When a limit reaches 90% (or a prepaid balance its last 10%), agents-tui beeps and sends a desktop notification once per window: through Notification Center on macOS, and `notify-send` on a Linux desktop.
+Each provider gets a bordered card with its name and plan in the top edge; the selected card's border is highlighted. Cards sit side by side when the terminal is wide enough, and the layout narrows down to about 30 columns. A meter turns red at 90%, and so does the `!` in the header. When a limit reaches 90% (or a prepaid balance its last 10%), agents-tui beeps and sends a desktop notification once per window: through Notification Center on macOS, and `notify-send` on a Linux desktop.
 
 Block characters are used with a UTF-8 locale, plain `#-` meters otherwise; `NO_COLOR` is respected. `--ascii` and `--no-color` force either.
 

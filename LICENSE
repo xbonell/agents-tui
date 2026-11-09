@@ -27,7 +27,7 @@ Third-party software
 This project includes work from the following projects, each under the MIT
 License (the same terms as above, with their own copyright notices):
 
-- Omarchy (https://github.com/basecamp/omarchy)
+- Omarchy (https://github.com/omacom/omarchy)
   Copyright (c) David Heinemeier Hansson
   The usage collectors in vendor/omarchy/, and the panel's design and logic,
   which this project ports (by way of agents-macos, whose macOS shim is

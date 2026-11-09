@@ -9,10 +9,7 @@ set -euo pipefail
 source "$(dirname "$0")/upstream.sh"
 UPSTREAM="${1:-$UPSTREAM_DEFAULT}"
 
-if [[ ! -f $UPSTREAM/shell/plugins/agents/collectors.py ]]; then
-  echo "sync-upstream: $UPSTREAM is not an Omarchy checkout" >&2
-  exit 1
-fi
+require_checkout "$UPSTREAM"
 
 # Collectors upstream removed go too, so the vendor dir mirrors it.
 rm -f "$VENDOR"/bin/omarchy-agent-usage-*

@@ -4,7 +4,7 @@ Guidance for AI coding agents working in this repository.
 
 ## What this is
 
-A terminal UI (Python, standard library `curses`) for macOS and Linux that ports Omarchy's `omarchy.agents` panel: rate limits, reset times, balances and token stats for AI coding subscriptions. It's the terminal sibling of agents-macos (a Swift menu bar app, `~/Work/agents-macos` or github.com/xbonell/agents-macos), and the presentation logic in `agents_tui/present.py` is a port of that app's `Model/Presentation.swift`, itself a port of Omarchy's `shell/plugins/agents/Panel.qml`. The record format is Omarchy's `docs/agent-usage-collectors.md`.
+A terminal UI (Python, standard library `curses`) for macOS and Linux that ports Omarchy's `omarchy.agents` panel: rate limits, reset times, balances and token stats for AI coding subscriptions. It's the terminal sibling of agents-macos (a Swift menu bar app, github.com/xbonell/agents-macos, usually checked out beside this one as `../agents-macos`), and the presentation logic in `agents_tui/present.py` is a port of that app's `Model/Presentation.swift`, itself a port of Omarchy's `shell/plugins/agents/Panel.qml`. The record format is Omarchy's `docs/agent-usage-collectors.md` (github.com/omacom/omarchy; the scripts find a local checkout at `$OMARCHY_CHECKOUT`, default `~/Work/99.misc/omarchy`).
 
 ## Commands
 

@@ -1,6 +1,6 @@
 # Shared by sync-upstream.sh and check-upstream.sh: where the Omarchy
 # checkout is, and which of its files this project vendors.
-UPSTREAM_DEFAULT="$HOME/Work/99.misc/omarchy"
+UPSTREAM_DEFAULT="${OMARCHY_CHECKOUT:-$HOME/Work/99.misc/omarchy}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 VENDOR="$ROOT/vendor/omarchy"
 
@@ -21,4 +21,13 @@ collector_paths() {
 vendored_local() {
   printf '%s\n' "${SHARED_FILES[@]}"
   (cd "$VENDOR" 2>/dev/null && ls bin/omarchy-agent-usage-* 2>/dev/null) | collector_paths
+}
+
+# Stop with a hint when the path isn't an Omarchy checkout, instead of
+# comparing with or copying from nothing.
+require_checkout() {
+  [[ -f $1/shell/plugins/agents/collectors.py ]] && return
+  echo "No Omarchy checkout at $1." >&2
+  echo "Clone https://github.com/omacom/omarchy, then pass its path or set OMARCHY_CHECKOUT." >&2
+  exit 2
 }

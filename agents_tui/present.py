@@ -170,6 +170,7 @@ SIGN_IN_COMMANDS: Dict[str, List[str]] = {
   "claude": ["claude", "auth", "login"],
   "codex": ["codex", "login"],
   "cursor": ["cursor-agent", "login"],
+  "grokbot": ["cursor-agent", "login"],
   "opencode": ["opencode", "auth", "login"],
   "grok": ["grok", "login"],
 }

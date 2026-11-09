@@ -1,0 +1,42 @@
+MIT License
+
+Copyright (c) 2026 xbonell
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Third-party software
+--------------------
+
+This project includes work from the following projects, each under the MIT
+License (the same terms as above, with their own copyright notices):
+
+- Omarchy (https://github.com/basecamp/omarchy)
+  Copyright (c) David Heinemeier Hansson
+  The usage collectors in vendor/omarchy/, and the panel's design and logic,
+  which this project ports (by way of agents-macos, whose macOS shim is
+  runner/macos_shim.py).
+
+- tomli (https://github.com/hukkin/tomli)
+  Copyright (c) 2021 Taneli Hukkinen
+  vendor/tomli/, with its own LICENSE there.
+
+The names of the services shown are trademarks of their respective owners.
+They're used only to label each service's usage, and this project isn't
+affiliated with or endorsed by any of them.
